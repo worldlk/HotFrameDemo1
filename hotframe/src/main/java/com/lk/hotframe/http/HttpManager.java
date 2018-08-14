@@ -1,6 +1,5 @@
 package com.lk.hotframe.http;
 
-import com.lk.hotframe.http.config.HttpGlobalConfig;
 import com.lk.hotframe.http.retry.RetryFunction;
 import com.lk.hotframe.lifecycle.RxLifecycleManager;
 import com.lk.hotframe.mvp.IView;

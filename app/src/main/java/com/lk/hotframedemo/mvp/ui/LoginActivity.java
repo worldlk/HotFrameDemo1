@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +31,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
 
     @Override
     public void getLoginSuccess(List<Login> list) {
+
         tvLoginInfo.setText(list.toString());
     }
 
@@ -40,7 +40,6 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     public void showMessage(@NonNull String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
-
 
 
     @Override

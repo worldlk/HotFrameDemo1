@@ -1,4 +1,4 @@
-package com.lk.hotframe.image;
+package com.lk.hotframe.image.options;
 
 /**
  * Created by LiuKai on 2018/8/13

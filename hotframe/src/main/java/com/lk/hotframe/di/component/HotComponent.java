@@ -4,13 +4,12 @@ import android.app.Application;
 
 import com.lk.hotframe.di.module.HotModule;
 import com.lk.hotframe.http.HttpManager;
-import com.lk.hotframe.http.config.HttpGlobalConfig;
+import com.lk.hotframe.http.HttpGlobalConfig;
 
 import javax.inject.Singleton;
 
 import dagger.BindsInstance;
 import dagger.Component;
-import dagger.Module;
 
 /**
  * Created by LiuKai on 2018/8/10
@@ -18,6 +17,8 @@ import dagger.Module;
 @Singleton
 @Component(modules = HotModule.class)
 public interface HotComponent {
+
+    Application application();//提供Application
 
     HttpGlobalConfig httpGlobalConfig();
 

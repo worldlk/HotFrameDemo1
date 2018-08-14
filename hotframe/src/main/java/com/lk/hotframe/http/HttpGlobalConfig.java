@@ -1,4 +1,4 @@
-package com.lk.hotframe.http.config;
+package com.lk.hotframe.http;
 
 import java.util.Map;
 

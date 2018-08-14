@@ -3,7 +3,7 @@ package com.lk.hotframe.di.module;
 import android.app.Application;
 import android.text.TextUtils;
 
-import com.lk.hotframe.http.config.HttpGlobalConfig;
+import com.lk.hotframe.http.HttpGlobalConfig;
 import com.lk.hotframe.http.interceptor.HttpHeaderInterceptor;
 import com.lk.hotframe.http.interceptor.HttpLogInterceptor;
 import com.lk.hotframe.utils.CollectionUtil;
