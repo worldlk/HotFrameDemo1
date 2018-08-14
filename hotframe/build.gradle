@@ -26,6 +26,19 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
         sourceCompatibility JavaVersion.VERSION_1_8
     }
+
+    //-------------------找到SystemProperties这个隐藏类 start----------------------------------------
+    String SDK_DIR = System.getenv("ANDROID_SDK_HOME")
+    if (SDK_DIR == null) {
+        Properties props = new Properties()
+        props.load(new FileInputStream(project.rootProject.file("local.properties")))
+        SDK_DIR = props.get('sdk.dir')
+    }
+    dependencies {
+        compileOnly files("${SDK_DIR}/platforms/android-21/data/layoutlib.jar")
+    }
+    //-------------------找到SystemProperties这个隐藏类 end-------------------------------------------
+
 }
 
 dependencies {
