@@ -67,4 +67,7 @@ public class DeviceUtil {
         return (int) (dpValue * scale + 0.5f);
     }
 
+
+
+
 }

@@ -1,46 +1,77 @@
 package com.lk.hotframe.permission;
 
 import android.app.Activity;
-import android.os.Build;
+
+import com.tbruyelle.rxpermissions2.Permission;
+import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import io.reactivex.functions.Consumer;
 
 /**
  * 权限管理
+ * Created by LiuKai on 2018/8/15
  */
 public class PermissionManager {
-    private static PermissionManager permissionManager;
-
-    private PermissionManager() {
-
-    }
-
-    public static PermissionManager instance() {
-        if (permissionManager == null) {
-            synchronized (PermissionManager.class) {
-                if (permissionManager == null) {
-                    permissionManager = new PermissionManager();
-                }
-            }
-        }
-        return permissionManager;
-    }
-
-    public void request(Activity activity, final OnPermissionCallback permissionCallback, final String... permissions) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && activity != null && permissionCallback != null) {
+    /**
+     * 请求一个权限
+     *
+     * @param activity    在哪个Activity进行授权
+     * @param callback    权限申请回掉
+     * @param permissions 权限名称
+     */
+    public void requestEach(Activity activity, final OnPermissionCallback callback, String... permissions) {
+        if (activity != null) {
             RxPermissions rxPermissions = new RxPermissions(activity);
             rxPermissions.requestEach(permissions).subscribe(new Consumer<Permission>() {
                 @Override
                 public void accept(Permission permission) throws Exception {
                     if (permission.granted) {
-                        permissionCallback.onRequestAllow(permission.name);
+                        if (callback != null) {
+                            callback.onGranted(permission.name);
+                        }
                     } else if (permission.shouldShowRequestPermissionRationale) {
-                        permissionCallback.onRequestRefuse(permission.name);
+                        if (callback != null) {
+                            callback.onDenied(permission.name);
+                        }
                     } else {
-                        permissionCallback.onRequestNoAsk(permission.name);
+                        if (callback != null) {
+                            callback.onDeniedWithNeverAsk(permission.name);
+                        }
                     }
                 }
             });
         }
     }
+
+    /**
+     * 请求多个权限
+     *
+     * @param activity    在哪个Activity进行授权
+     * @param callback    权限申请回掉
+     * @param permissions 多个权限名称 可变参数用"," 分隔
+     */
+    public void requestEachCombined(Activity activity, final OnPermissionCallback callback, String... permissions) {
+        if (activity != null) {
+            RxPermissions rxPermissions = new RxPermissions(activity);
+            rxPermissions.requestEachCombined(permissions).subscribe(new Consumer<Permission>() {
+                @Override
+                public void accept(Permission permission) throws Exception {
+                    if (permission.granted) {
+                        if (callback != null) {
+                            callback.onGranted(permission.name);
+                        }
+                    } else if (permission.shouldShowRequestPermissionRationale) {
+                        if (callback != null) {
+                            callback.onDenied(permission.name);
+                        }
+                    } else {
+                        if (callback != null) {
+                            callback.onDeniedWithNeverAsk(permission.name);
+                        }
+                    }
+                }
+            });
+        }
+    }
+
 }

@@ -56,7 +56,7 @@ import javax.xml.transform.stream.StreamSource;
 
 /**
  * Created by LiuKai on 2018/8/14
- * LogUtils 日志管理类. 支持json,xml格式
+ * LogUtils 日志管理类. 支持json,xml格式,保存到文件
  *
  * @see <a>https://github.com/Blankj/AndroidUtilCode<a/> 了解一下
  */
