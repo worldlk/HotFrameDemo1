@@ -13,7 +13,7 @@ import io.reactivex.functions.Consumer;
  */
 public class PermissionManager {
     /**
-     * 请求一个权限
+     * 申请多个权限，成功，失败权限名称会一个个返回
      *
      * @param activity    在哪个Activity进行授权
      * @param callback    权限申请回掉
@@ -44,7 +44,7 @@ public class PermissionManager {
     }
 
     /**
-     * 请求多个权限
+     * 申请多个权限，成功或者失败，权限名称会全部返回
      *
      * @param activity    在哪个Activity进行授权
      * @param callback    权限申请回掉
@@ -73,5 +73,6 @@ public class PermissionManager {
             });
         }
     }
+
 
 }

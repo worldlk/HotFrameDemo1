@@ -2,14 +2,14 @@ package com.lk.hotframedemo;
 
 import android.Manifest;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.lk.hotframe.HotFrame;
 import com.lk.hotframe.permission.OnPermissionCallback;
+import com.lk.hotframe.utils.LogUtils;
 import com.lk.hotframedemo.mvp.ui.LoginActivity;
 
 /**
@@ -35,20 +35,21 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        HotFrame.permissionManager().requestEachCombined(MainActivity.this, new OnPermissionCallback() {
+        HotFrame.permissionManager().requestEach(MainActivity.this, new OnPermissionCallback() {
             @Override
             public void onGranted(String permissionName) {
-                Toast.makeText(MainActivity.this, permissionName, Toast.LENGTH_SHORT).show();
+                LogUtils.e(permissionName);
+
             }
 
             @Override
             public void onDenied(String permissionName) {
-                Toast.makeText(MainActivity.this, permissionName, Toast.LENGTH_SHORT).show();
+                LogUtils.e(permissionName);
             }
 
             @Override
             public void onDeniedWithNeverAsk(String permissionName) {
-                Toast.makeText(MainActivity.this, permissionName, Toast.LENGTH_SHORT).show();
+                LogUtils.e(permissionName);
             }
         }, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA);
 
